@@ -4,12 +4,21 @@ import "./App.css";
 function App() {
   const [inputUrl, setInputUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleShortenUrl = async () => {
     if (!inputUrl) {
       alert("Por favor, ingresa una URL válida.");
       return;
     }
+
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    if (!urlRegex.test(inputUrl)) {
+      alert("Por favor, ingresa una URL válida con http:// o https://");
+      return;
+    }
+
+    setLoading(true);
 
     try {
       const response = await fetch(
@@ -32,13 +41,14 @@ function App() {
     } catch (error) {
       console.error(error);
       alert("Hubo un problema al acortar la URL.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <>
+    <div>
       <div>
-        {/* Puedes usar un logo local si lo tienes en lugar de uno externo */}
         <a
           href="https://cdn.prod.website-files.com/66997e96fa2595f5ecfc86a3/6746771d12b2f278cc7363fd_short-url-logo.png"
           target="_blank"
@@ -60,22 +70,20 @@ function App() {
           onChange={(e) => setInputUrl(e.target.value)}
         />
       </label>
-
       <div className="card">
-        <button onClick={handleShortenUrl}>Acortar URL</button>
+        <button onClick={handleShortenUrl} disabled={loading}>
+          {loading ? "Acortando..." : "Acortar URL"}
+        </button>
       </div>
-
-      {shortUrl ? (
+      {shortUrl && (
         <div>
           <h3>URL Acortada:</h3>
           <a href={shortUrl} target="_blank" rel="noopener noreferrer">
             {shortUrl}
           </a>
         </div>
-      ) : (
-        <p>Aquí aparecerá la URL acortada...</p>
       )}
-    </>
+    </div>
   );
 }
 
