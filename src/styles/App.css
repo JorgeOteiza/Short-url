@@ -49,5 +49,12 @@
   height: 100vh;
   width: auto;
   align-content: center;
-  background-color: bisque;
+  background: linear-gradient(
+    to right,
+    rgba(37, 216, 165, 0),
+    /* Transparente al inicio */ rgba(37, 216, 165, 0.78),
+    /* Color opaco en el centro */ rgba(37, 216, 165, 0)
+      /* Transparente al final */
+  );
+  box-shadow: 0px 1px 39px 33px darkcyan;
 }
