@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
+import "./styles/index.css";
 
 function App() {
   const [inputUrl, setInputUrl] = useState("");
@@ -47,42 +48,44 @@ function App() {
   };
 
   return (
-    <div>
-      <div>
-        <a
-          href="https://cdn.prod.website-files.com/66997e96fa2595f5ecfc86a3/6746771d12b2f278cc7363fd_short-url-logo.png"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img
-            src="https://cdn.prod.website-files.com/66997e96fa2595f5ecfc86a3/6746771d12b2f278cc7363fd_short-url-logo.png"
-            alt="Short URL Logo"
-            className="logo"
-          />
-        </a>
-      </div>
-      <label>
-        URL:
-        <input
-          className="inputLabel"
-          placeholder="Ingresa tu URL aquí"
-          value={inputUrl}
-          onChange={(e) => setInputUrl(e.target.value)}
-        />
-      </label>
-      <div className="card">
-        <button onClick={handleShortenUrl} disabled={loading}>
-          {loading ? "Acortando..." : "Acortar URL"}
-        </button>
-      </div>
-      {shortUrl && (
-        <div>
-          <h3>URL Acortada:</h3>
-          <a href={shortUrl} target="_blank" rel="noopener noreferrer">
-            {shortUrl}
+    <div className="container">
+      <div className="w-auto h-auto">
+        <div className="bg-lightblue">
+          <a
+            href="https://cdn.prod.website-files.com/66997e96fa2595f5ecfc86a3/6746771d12b2f278cc7363fd_short-url-logo.png"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://cdn.prod.website-files.com/66997e96fa2595f5ecfc86a3/6746771d12b2f278cc7363fd_short-url-logo.png"
+              alt="Short URL Logo"
+              className="logo"
+            />
           </a>
         </div>
-      )}
+        <label>
+          URL:
+          <input
+            className="inputLabel"
+            placeholder="Ingresa tu URL aquí"
+            value={inputUrl}
+            onChange={(e) => setInputUrl(e.target.value)}
+          />
+        </label>
+        <div className="card">
+          <button onClick={handleShortenUrl} disabled={loading}>
+            {loading ? "Acortando..." : "Acortar URL"}
+          </button>
+        </div>
+        {shortUrl && (
+          <div>
+            <h3>URL Acortada:</h3>
+            <a href={shortUrl} target="_blank" rel="noopener noreferrer">
+              {shortUrl}
+            </a>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -44,4 +43,11 @@
 .inputLabel {
   margin-left: 3px;
   padding: 4px;
+}
+
+.container {
+  height: 100vh;
+  width: auto;
+  align-content: center;
+  background-color: bisque;
 }
