@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="container">
-      <div className="w-auto h-auto">
+      <div className="w-auto h-auto p-3">
         <div className="bg-lightblue">
           <a
             href="https://tinyurl.com/4969cyrv"
